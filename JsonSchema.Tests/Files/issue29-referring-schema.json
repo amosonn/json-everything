@@ -1,0 +1,5 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "issue29-referring-schema.json",
+  "$ref": "issue29-referred-schema.json"
+}

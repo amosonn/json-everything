@@ -271,5 +271,19 @@ namespace Json.Schema.Tests
 
 			validation.AssertValid();
 		}
+
+		[Test]
+		public void Issue29_SchemaFromFileWithReferenceToOtherFileShouldWork()
+		{
+			var schemaFile = Path.Combine(TestContext.CurrentContext.WorkDirectory, "Files", "issue29-referring-schema.json")
+				.AdjustForPlatform();
+
+			var jsonStr = @"{ ""abc"": 1 }";
+			var schema = JsonSchema.FromFile(schemaFile);
+			var json = JsonDocument.Parse(jsonStr).RootElement;
+			var validation = schema.Validate(json, new ValidationOptions { OutputFormat = OutputFormat.Detailed });
+
+			validation.AssertValid();
+		}
 	}
 }
